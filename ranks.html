@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilot Ranks | Air Vanuatu Virtual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #030712;
+            --bg-card: rgba(17, 24, 39, 0.55);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --accent-teal: #06b6d4;
+            --accent-glow: #0284c7;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --glass-blur: blur(16px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            padding-top: 7rem;
+        }
+
+        h1, h2, h3, .logo-text {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Glassmorphism Navigation */
+        header {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-card);
+            border-radius: 9999px;
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-glow));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+            nav a.active, nav a:hover {
+                color: var(--accent-teal);
+            }
+
+        .btn-glow {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-glow));
+            color: #fff;
+            padding: 0.65rem 1.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+            transition: all 0.3s ease;
+        }
+
+            .btn-glow:hover {
+                box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+                transform: translateY(-2px);
+            }
+
+        /* Container Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .header-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+            .header-title h1 {
+                font-size: 3rem;
+                font-weight: 800;
+                margin-bottom: 0.5rem;
+                background: linear-gradient(to bottom, #ffffff, #9ca3af);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .header-title p {
+                color: var(--text-muted);
+                font-size: 1.1rem;
+            }
+
+        /* Rank List Layout */
+        .rank-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .rank-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 1.75rem 2rem;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+            .rank-card:hover {
+                border-color: rgba(6, 182, 212, 0.4);
+                transform: translateX(5px);
+            }
+
+        .rank-info h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 0.35rem;
+        }
+
+        .rank-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .hours-badge {
+            background: rgba(6, 182, 212, 0.12);
+            color: var(--accent-teal);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 0.6rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--border-card);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 1.25rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .rank-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">AV</div>
+            <span class="logo-text">AIR VANUATU</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="staff.html">Staff</a></li>
+                <li><a href="fleet.html">Fleet</a></li>
+                <li><a href="routes.html">Routes</a></li>
+                <li><a href="ranks.html" class="active">Ranks</a></li>
+            </ul>
+        </nav>
+        <a href="https://mq223a3k.forms.app/air-vanuatu-virtual" target="_blank" class="btn-glow">Apply Now</a>
+    </header>
+
+    <div class="container">
+        <div class="header-title">
+            <h1>Rank Structure</h1>
+            <p>Progress through flight hours to unlock expanded aircraft access and routes.</p>
+        </div>
+
+        <div class="rank-list">
+            <div class="rank-card">
+                <div class="rank-info">
+                    <h3>Island Trainee</h3>
+                    <p>Unlocks the Dash 8-Q400 for domestic inter-island routes.</p>
+                </div>
+                <div class="hours-badge">0 – 15 Hours</div>
+            </div>
+
+            <div class="rank-card">
+                <div class="rank-info">
+                    <h3>First Officer</h3>
+                    <p>Unlocks the Airbus A220-300 for regional Pacific and international flights.</p>
+                </div>
+                <div class="hours-badge">15 – 50 Hours</div>
+            </div>
+
+            <div class="rank-card">
+                <div class="rank-info">
+                    <h3>Captain</h3>
+                    <p>Full route network clearance and priority participation in group events.</p>
+                </div>
+                <div class="hours-badge">50 – 120 Hours</div>
+            </div>
+
+            <div class="rank-card">
+                <div class="rank-info">
+                    <h3>Senior Captain</h3>
+                    <p>Access to specialized charter routes, testing flights, and event leadership.</p>
+                </div>
+                <div class="hours-badge">120+ Hours</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Air Vanuatu Virtual is a non-profit Virtual Airline operating exclusively on the Infinite Flight simulator. Not affiliated with real-world aviation entities.</p>
+    </footer>
+
+</body>
+</html>
